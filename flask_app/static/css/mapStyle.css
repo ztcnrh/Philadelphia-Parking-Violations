@@ -1,0 +1,83 @@
+.navbar {
+  padding: 0.8rem 1rem;
+}
+
+/* remove default margin and padding from body */
+body {
+  padding: 0;
+  margin: 0;
+}
+  
+/* set map, body, and html to 100% of the screen size */
+#map,
+body,
+html {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+
+/* Markers layer */
+.legend {
+  position: fixed;
+  bottom: 15px;
+  right: 0px;
+  padding: 10px;
+  padding-bottom: 0;
+  /* font-family: sans-serif; */
+  font-size: 12px;
+  /* font-weight: bold; */
+  line-height: 14px;
+  color: SlateGray;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.legend .unregAbanV {
+  color: #285e8a;
+}
+
+.legend .highway {
+  color: black;
+}
+
+.legend .massTransit {
+  color: #B22222;
+}
+
+.legend .grass {
+  color: green;
+}
+
+.legend .noise {
+  color: #d355cd;
+}
+
+.leaflet-popup-content {
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.leaflet-popup-content p {
+  font-size: 14px;
+}
+
+.leaflet-popup-content hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.leaflet-popup-content h5 {
+  padding-top: 5px;
+}
+
+.leaflet-control-attribution {
+  position: fixed;
+  bottom: 0px;
+  right: 1px;
+}
+

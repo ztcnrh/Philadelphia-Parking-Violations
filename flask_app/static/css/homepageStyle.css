@@ -1,0 +1,50 @@
+.navbar {
+    padding: 0.8rem 1rem;
+}
+
+/* Prev control */
+.carousel-control-prev {
+    width: 8%;
+    background-color: slateGray;
+    opacity: 0.2;
+}
+
+.carousel-control-prev:hover {
+    opacity: 0.5;
+}
+
+/* Next control */
+.carousel-control-next {
+    width: 8%;
+    background-color: SlateGray;
+    opacity: 0.1;
+}
+
+.carousel-control-next:hover{
+    opacity: 0.5;
+}
+
+/* Prev icon */
+.carousel-control-prev-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Next icon */
+.carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.carousel-caption h5, p {
+    color: SlateGray;
+}
+
+div.carousel button {
+    border-width: 0px;
+}
+
+#top-margin {
+    margin-top: 20px;
+}
+

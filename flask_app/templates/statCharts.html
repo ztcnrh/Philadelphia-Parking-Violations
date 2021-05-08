@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Statistics</title>
+    <!--Bootswatch CSS Theme-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+    <!-- Our CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/statChartsStyle.css') }}">
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Math Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.1.0/math.min.js"></script>
+  </head>
+
+  <body>
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand">Philadelphia Parking Violations 2017</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="/charts">Statistics</a>
+            <a class="nav-link" href="/scatterplot">Scatterplot</a>
+            <a class="nav-link" href="/map">Parking Citation Map</a>
+            <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    
+    
+
+    
+
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <p id="barchart-p">
+          We start by taking a look at the data distribution based on the violation type. 
+          In the top 10 violations by count, "Meter Expired CC" (CC means Center City) 
+          was not the most expensive offense but was the most commonly "gifted" ticket. As expected, 
+          the volume was the real winner.
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <div id="violation-bar"></div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <hr>
+        <p id="pie-p">
+          Our Garden State friends apparently made more trips than our VAT (Value-Added Taxes) exempt 
+          folks from Delaware and also unavoidably got more tickets in 2017. Some of the farther states 
+          also made it to the top 10, such as Florida and Indiana. On the right hand side, the state 
+          license from Indiana was fined the most on average besides the "VN" catogery which stands 
+          for "Veteran".
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-5">
+        <div id="state-pie-count"></div>
+      </div>
+      <div class="col-5">
+        <div id="state-pie-fine"></div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <hr>
+        <p id="bubble-p1">
+          Now, our most entertaining visuals cooked the 2017 violations data and the 2017 historic 
+          weather data into a beautiful pot of goodness. The first bubble chart shows a number of things. 
+          Each parent weather type is displayed horizontally and color coded accordingly. Y-axis shows 
+          the number of tickets for each complete hour in the entire 2017! And the more tickets collected, 
+          the bigger the circle. Pieceing them together, each circle represents the number of tickets 
+          issued in an hour with the weather condition in that moment. Precipitation didn't seem to have an 
+          astronomical effect on the amount of tickets PPA was able to issue. In fact, if we compare 
+          the "bad" weather conditions (left) with the good ones (right), they seem to have very similar 
+          distributions of high and low number of violations issued. Snow, on the other hand, shows a dramatic 
+          decline. Afterall, even the officers do not change their behaviors, it's very likely that the lack of 
+          violations was just a result of fewer people going outdoor in snowy days.
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div id="weather-bubble"></div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <p id="bubble-p2">
+          Looking at all the time periods (hours) in a year doesn't make the most sense. Thus, we also 
+          created a second bubble chart. Presented in a similar fashion, however, this time we calculated 
+          the average number of violations per each weather type based on the total violation count and 
+          the total number of hours that were under the same weather condition. We used the more detailed 
+          weather descriptions as well to add more color to the analysis. Interestingly enough, the highest 
+          average belonged to the "very heavy rain" yet some of the lowest averages belonged to those  
+          weather conditions that are know for their unbearingly low temperatures, such as "freezing rain" 
+          and "snow".
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div id="weather-bubble-avg"></div>
+      </div>
+    </div>
+
+    
+    
+    <!-- D3 CDN -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='js/statCharts.js') }}"></script>
+    <!-- API key -->
+    <!-- <script src="{{ url_for('static', filename='js/config.js') }}"></script> -->
+
+    <!--Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+
+  </body>
+
+</html>
