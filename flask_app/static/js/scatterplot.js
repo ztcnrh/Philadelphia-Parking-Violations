@@ -1,6 +1,8 @@
 // Initial Setup
-var svgWidth = 700;
-var svgHeight = 530;
+// var svgWidth = 700;
+var svgWidth = parseInt(d3.select("#scatter").style("width")); //
+// var svgHeight = 530;
+var svgHeight = svgWidth - svgWidth / 3.9;
 
 var margin = {
     top: 20,
@@ -199,11 +201,21 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
     circlesGroup.call(toolTip);
 
     circlesGroup.on("mouseover", function(data) {
-        toolTip.show(data);
+        toolTip.show(data, this);
+        // Highlight the state circle's border
+        d3.select(this)
+        .style("stroke", "#1a1a1a")
+        .style("stroke-opacity", "0.9")
+        .style("opacity", "1");
     })
     // on mouseout event
         .on("mouseout", function(data, index) {
         toolTip.hide(data);
+        // Remove highlight
+        d3.select(this)
+        .style("stroke", "#F5F5F5")
+        .style("stroke-opacity", "0.3")
+        .style("opacity", "1");
     });
 
     // Return both groups with updated tooltips
