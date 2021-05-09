@@ -39,7 +39,7 @@ h1, h2, p {
 
 .circles {
   fill: SlateGray;
-  stroke: WhiteSmoke;
+  stroke: #F5F5F5;
   stroke-opacity: 0.3;
   opacity: 0.7;
 }
