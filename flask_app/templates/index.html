@@ -41,11 +41,13 @@
           <br>
           <h4>Parking tickets...</h4>
           <p>They can ruin your day and hurt your wallet. As a group, we set out to learn more about parking tickets. What is the most common type
-            of parking violation? Where are they more likely to occur? How often are they issued? Could weather affect answers to these questions?
+            of parking violation? Where are they more likely to occur? How often are they issued? Could weather conditions affect ticket issuance behaviors?
           </p>
           <p>
-            To answer the above questions, we retrieved Philadelphia parking violation data from 2017 and historical weather data from that same year. 
-            We have generated a series of visualizations and an interactive heat map to take a closer look at the data.
+            To answer the above questions, we retrieved the historic Philadelphia parking violations data from 
+            2017 <a href="https://www.opendataphilly.org/dataset/parking-violations" target="_blank"><u>(OpenDataPhilly)</u></a> and the historical 
+            weather data from that same year <a href="https://openweathermap.org/history-bulk" target="_blank"><u>(OpenWeather API)</u></a>. 
+            We then generated a series of visualizations and an interactive multi-layered map to take a closer look at the data.
           </p>
         </div>
       </div>
@@ -97,6 +99,21 @@
               <span class="visually-hidden"></span>
             </button>
           </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center" id="bottom-margin">
+        <div class="col-10">
+          <br>
+          <hr>
+          <p>
+            <small><em>
+              P.S. For considerations including ease of work, Github repo storage, and most importantly the 
+              responsiveness and performance while loading/generating the visuals, we decided to take a random sample of 
+              only <strong>30%</strong> of all the parking violations data in 2017. The violation count per month was 
+              consistent throughout the year thus we believed there will be minimal negative impact on our visulizations.
+            </em></small>
+          </p>
         </div>
       </div>
     </div>

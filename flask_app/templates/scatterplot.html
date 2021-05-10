@@ -45,17 +45,39 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-9">
-            <div class="article">
-                <h2>To drive, or not to drive, that is the question.</h2>
-                
-                <!-- <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-                quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor
-                quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                ultricies mi vitae est. Mauris placerat eleifend leo.</p> -->
-            </div>
+              <div class="article">
+                  <h2>To drive, or not to drive, that is the question.</h2>
+                  
+                  <p>
+                    Having taken a look at the average tickets issued per weather types, 
+                    we decided to dive deeper into other weather metrics in the weather 
+                    dataset to see if we can find any correlations.
+                  </p>
+                  <p>
+                    To do that, we built a scatter plot that shows various weather metrics 
+                    on the x-axis and parking metrics on the y-axis. Again, each dot is a complete 
+                    hour with a weather type recorded for that time period. The majority of the 
+                    metrics are implemented to explore different combinations. Using rainy 
+                    conditions and their precipitation volumes against total ticket count as a 
+                    case study, we do not see a strong correlation. The high ticket average shown 
+                    for the "very heavy rain" weather type is also plotted on the chart (far right). Despite that 
+                    data point showed a whopping 111 tickets collected under an extremely inclement weather 
+                    condition (26.7mm precipitation volume) within an hour, we would likely consider it 
+                    as an outlier that should not have an significant impact on our analysis.
+                    Nevertheless, it looks like when the precipitation volume exceeded 5mm 
+                    the ticket count tended to remain on the lower end. There could potentially be 
+                    a correlation here but a dataset of more than just a 30% sample of the population 
+                    needs to be collected and further analysis needs to be performed to make a definitive conclusion.
+                  </p>
+                  <p>
+                    Having tried to visualize these data points on a scatter plot, while they are 
+                    certainly pleasing on the eyes, we believe other frameworks such as using histograms 
+                    to show data distribution or calculating average hourly ticket issurance for each 
+                    incremental range of a specific metric (e.g. precipitation volume: 1mm, 2mm, 3mm, etc.) 
+                    like we have done in our "Statistics" page could potentially provide us more accurate insights. 
+                    Given the time, these are excellent action items for further improving our analysis.
+                  </p>
+              </div>
             </div>
         </div>
     </div>
