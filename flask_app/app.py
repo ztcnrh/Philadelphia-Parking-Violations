@@ -114,7 +114,7 @@ def scatterplot_data():
                                     Weather.rain_1h, Weather.snow_3h, Weather.weather_description,
                                     db.func.count(Parking.anon_ticket_number), db.func.avg(Parking.fine)).\
                                 filter(Parking.ymdh == Weather.ymdh).\
-                                group_by(Parking.ymdh).\
+                                group_by(Weather.dt).\
                                 order_by(Weather.dt.asc()).all()
 
     # Make "sqlalchemy.util._collections.result" type into a "list" type
