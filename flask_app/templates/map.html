@@ -13,7 +13,7 @@
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin="" />
     <!-- Icons -->
-    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet.extra-markers.min.css') }}">
     <!-- Our CSS  -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mapStyle.css') }}">
@@ -42,8 +42,7 @@
     <div id="map">
       <!-- We append our map here. -->
     </div>
-
-
+    
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -58,10 +57,11 @@
     <!-- polyfill.io is library for using newer JavaScript features in older browers (such as Object.assign) -->
     <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script> -->
     <!-- API key -->
-    <script src="{{ url_for('static', filename='js/config.js') }}"></script>
-    <!-- JS -->
+    <!-- <script src="{{ url_for('static', filename='js/config.js') }}"></script> -->
+    <script type="text/javascript">var API_KEY = "{{ api_key }}"</script>
+    // <!-- JS -->
     <script src="{{ url_for('static', filename='js/map.js') }}"></script>
-    <!-- Leaflet heatmap plugin -->
+    // <!-- Leaflet heatmap plugin -->
     <script src="{{ url_for('static', filename='js/leaflet-heat.js') }}"></script>
 
     <!--bootstrap-->
