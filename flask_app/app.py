@@ -1,28 +1,45 @@
 # Dependencies
-from flask import Flask, render_template, redirect, jsonify
-import sqlalchemy
-from sqlalchemy.orm import Session
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy import create_engine, func, inspect, or_
-import matplotlib.image as mpimg
+from os import environ
+from flask import Flask, render_template, redirect, jsonify, request
+# import sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow # Need to jsonify the response from "/api/heatmap" route
+from .config import LOCAL_API_KEY
+# from sqlalchemy.orm import Session
+# from sqlalchemy.ext.automap import automap_base
+# from sqlalchemy import create_engine, func, inspect, or_
 
 app = Flask(__name__)
 
-database_path = '../flask_app/static/data/data_all.sqlite'
-engine = create_engine(f'sqlite:///{database_path}')
-conn = engine.connect()
+# Connect to Heroku Postgres if running on server or sqlite if running locally
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL', '') or "sqlite:///static/data/data_all.sqlite"
+# Connect to Heroku Config Vars if running on server or grab api key var from config.py if running locally
+app.config['MAP_API_KEY'] = environ.get('API_KEY', '') or LOCAL_API_KEY
+
+# Remove tracking modifications
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+ma = Marshmallow(app)
+
+from .models import Parking, Weather
+from .models import ppa_schema # Marshmallow operations
+
+# database_path = '../flask_app/static/data/data_all.sqlite'
+# engine = create_engine(f'sqlite:///{database_path}')
+# conn = engine.connect()
 
 # Reflect an existing database into a new model
-Base = automap_base()
+# Base = automap_base()
 # Reflect the tables
-Base.prepare(engine, reflect=True)
+# Base.prepare(engine, reflect=True)
 
 # View all of the classes that automap found
 # print(Base.classes.keys())
 
 # Save references to each table
-Parking = Base.classes.ppa
-Weather = Base.classes.weather
+# Parking = Base.classes.ppa
+# Weather = Base.classes.weather
 # --------------------------------------------------------------------------------------------
 # --------------------------------------------------------------------------------------------
 
@@ -36,33 +53,42 @@ def map_data():
     response = {}
 
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
     # Query
     # ----- All parking citation coordinates -----
-    coordinates = session.query(Parking.lat, Parking.lon).all()
-    response['heatmap_coordinates'] = coordinates
+    coordinates = db.session.query(Parking.lat, Parking.lon).all()
+
+    # Convert "sqlalchemy.util._collections.result" type to "list" type
+    coordinates_list = []
+    for pair in coordinates:
+        coordinates_list.append(list(pair))
+    
+    response['heatmap_coordinates'] = coordinates_list
 
     # ------------------------
     # Session ends, all queries completed
-    session.close()
+    # session.close()
 
+    result = ppa_schema.dump(response)
     return jsonify(response)
+
+    # return jsonify(response)
 
 @app.route('/api/violations')
 def violation_map():
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
     # Query
     # ----- Data for specific violation types -----
-    violation_types = session.query(Parking.lat, Parking.lon, Parking.issue_datetime, Parking.violation_desc,
+    violation_types = db.session.query(Parking.lat, Parking.lon, Parking.issue_datetime, Parking.violation_desc,
                               Parking.location, Parking.fine, Parking.issuing_agency).\
-                              filter(or_(Parking.violation_desc == 'UNREG/ABANDONED VEH',
-                                     Parking.violation_desc == 'STOP/BLOCK HIGHWAY',
-                                     Parking.violation_desc == 'BLOCKNG MASS TRANSIT',
-                                     Parking.violation_desc == 'PARKED ON GRASS',
-                                     Parking.violation_desc == 'EXCESSIVE NOISE')).all()
+                              filter((Parking.violation_desc == 'UNREG/ABANDONED VEH') |
+                                     (Parking.violation_desc == 'STOP/BLOCK HIGHWAY') |
+                                     (Parking.violation_desc == 'BLOCKNG MASS TRANSIT') |
+                                     (Parking.violation_desc == 'PARKED ON GRASS') |
+                                     (Parking.violation_desc == 'EXCESSIVE NOISE')).all()
 
     violation_types_list = []
     for data in violation_types:
@@ -73,20 +99,20 @@ def violation_map():
 
     # ------------------------
     # Session ends, all queries completed
-    session.close()
+    # session.close()
 
     return jsonify(violation_types_transformed)
 
 @app.route('/api/scatterplot')
 def scatterplot_data():
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
     # Query
     # ----- Parking and weather data by hour -----
-    data_per_hour = session.query(Weather.dt, Weather.feels_like, Weather.humidity,
+    data_per_hour = db.session.query(Weather.dt, Weather.feels_like, Weather.humidity,
                                     Weather.rain_1h, Weather.snow_3h, Weather.weather_description,
-                                    func.count(Parking.anon_ticket_number), func.avg(Parking.fine)).\
+                                    db.func.count(Parking.anon_ticket_number), db.func.avg(Parking.fine)).\
                                 filter(Parking.ymdh == Weather.ymdh).\
                                 group_by(Parking.ymdh).\
                                 order_by(Weather.dt.asc()).all()
@@ -114,7 +140,7 @@ def scatterplot_data():
 
     # ------------------------
     # Session ends, all queries completed
-    session.close()
+    # session.close()
 
     return jsonify(data_per_hour_transformed)
 
@@ -127,14 +153,14 @@ def violation_bar_data():
     response['avg_fine'] = []
 
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
     # Query
     # ----- Ticket count per violation type -----
-    tickets_per_violation = session.query(Parking.violation_desc,func.count(Parking.anon_ticket_number), func.avg(Parking.fine)).\
+    tickets_per_violation = db.session.query(Parking.violation_desc,db.func.count(Parking.anon_ticket_number), db.func.avg(Parking.fine)).\
                                     group_by(Parking.violation_desc).\
-                                    order_by(func.count(Parking.anon_ticket_number).desc()).\
-                                    order_by(func.avg(Parking.fine).desc()).all()
+                                    order_by(db.func.count(Parking.anon_ticket_number).desc()).\
+                                    order_by(db.func.avg(Parking.fine).desc()).all()
 
     for violation in tickets_per_violation:
         response['description'].append(violation[0])
@@ -143,21 +169,21 @@ def violation_bar_data():
 
     # ------------------------
     # Session ends, all queries completed
-    session.close()
+    # session.close()
 
     return jsonify(response)
 
 @app.route('/api/state_pie')
 def state_pie_data():
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
     # Query
     # ----- Tickets and fine per state -----
-    tickets_per_state = session.query(Parking.state, func.count(Parking.anon_ticket_number), func.avg(Parking.fine)).\
+    tickets_per_state = db.session.query(Parking.state, db.func.count(Parking.anon_ticket_number), db.func.avg(Parking.fine)).\
                                 group_by(Parking.state).\
-                                order_by(func.count(Parking.anon_ticket_number).desc()).\
-                                order_by(func.avg(Parking.fine).desc()).all()
+                                order_by(db.func.count(Parking.anon_ticket_number).desc()).\
+                                order_by(db.func.avg(Parking.fine).desc()).all()
     
     # Create a dictionary that contains multiple dictionaries of arrays
     tickets_per_state_dict = {}
@@ -172,25 +198,25 @@ def state_pie_data():
 
     # ------------------------
     # Session ends, all queries completed
-    session.close()
+    # session.close()
 
     return jsonify(tickets_per_state_dict)
 
 @app.route('/api/weather_bubble')
 def tickets_per_weather():
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
     # Query
     # ----- Tickets and fine per state -----
-    tickets_per_hour = session.query(Weather.dt,
+    tickets_per_hour = db.session.query(Weather.dt,
                         Weather.month,
                         Weather.day,
                         Weather.hour,
                         Weather.weather_id,
                         Weather.weather_main,
                         Weather.weather_description,
-                        func.count(Parking.anon_ticket_number)).\
+                        db.func.count(Parking.anon_ticket_number)).\
                         filter(Parking.ymdh == Weather.ymdh).\
                         group_by(Weather.dt).\
                         order_by(Weather.weather_id.asc()).all()
@@ -217,29 +243,29 @@ def tickets_per_weather():
 
     # ------------------------
     # Session ends, all queries completed
-    session.close()
+    # session.close()
 
     return jsonify(tickets_per_hour_dict)
 
 @app.route('/api/weather_bubble_avg')
 def avg_tickets_per_weather():
     # Create our session (link) from Python to the DB
-    session = Session(engine)
+    # session = Session(engine)
 
     # Queries
     # ----- Average aggregated ticket count per weather type for all 2017 hours -----
-    ticket_count = session.query(Weather.weather_id,
+    ticket_count = db.session.query(Weather.weather_id,
                                  Weather.weather_main,
                              Weather.weather_description,
-                       func.count(Parking.anon_ticket_number)).\
+                       db.func.count(Parking.anon_ticket_number)).\
                        filter(Parking.ymdh == Weather.ymdh).\
                        group_by(Weather.weather_id).\
                        order_by(Weather.weather_id.asc()).all()
 
-    hour_count = session.query(Weather.weather_id,
+    hour_count = db.session.query(Weather.weather_id,
                                Weather.weather_main,
                                Weather.weather_description,
-                     func.count(Weather.weather_description)).\
+                     db.func.count(Weather.weather_description)).\
                      group_by(Weather.weather_id).\
                      order_by(Weather.weather_id.asc()).all()
 
@@ -271,7 +297,7 @@ def avg_tickets_per_weather():
 
     # ------------------------
     # Session ends, all queries completed
-    session.close()
+    # session.close()
 
     return jsonify(avg_tickets_per_weather_type)
 
@@ -288,7 +314,8 @@ def index():
 
 @app.route('/map')
 def heatmap():
-    return render_template("map.html")
+    # Return map.html and also pass over api key
+    return render_template("map.html", api_key=app.config['MAP_API_KEY'])
 
 @app.route('/scatterplot')
 def scatterplot():
