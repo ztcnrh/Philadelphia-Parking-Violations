@@ -9,20 +9,34 @@
     opacity: 0.2;
 }
 
-.carousel-control-prev:hover {
+/* These styles are replaced by codes in home.js */
+/* .carousel-control-prev:hover,
+.carousel-control-prev:active {
     opacity: 0.5;
-}
+} */
+
+/* .carousel-control-prev:focus {
+    opacity: 0.6;
+    background-color: steelBlue;
+} */
 
 /* Next control */
 .carousel-control-next {
     width: 8%;
-    background-color: SlateGray;
-    opacity: 0.1;
+    background-color: slateGray;
+    opacity: 0.2;
 }
 
-.carousel-control-next:hover{
+/* These styles are replaced by codes in home.js */
+/* .carousel-control-next:hover,
+.carousel-control-next:active {
     opacity: 0.5;
 }
+
+.carousel-control-next:focus {
+    opacity: 0.6;
+    background-color: steelBlue;
+} */
 
 /* Prev icon */
 .carousel-control-prev-icon {
