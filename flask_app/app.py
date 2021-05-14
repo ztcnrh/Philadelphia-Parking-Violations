@@ -9,6 +9,7 @@ from .config import LOCAL_API_KEY
 # from sqlalchemy.ext.automap import automap_base
 # from sqlalchemy import create_engine, func, inspect, or_
 
+
 app = Flask(__name__)
 
 # Connect to Heroku Postgres if running on server or sqlite if running locally
@@ -141,8 +142,21 @@ def scatterplot_data():
     # ------------------------
     # Session ends, all queries completed
     # session.close()
+    response_list = []
+    for data in data_per_hour_transformed:
+        response_dict = {}
+        response_dict['datetime'] = data['datetime']
+        response_dict['temp_feels_like'] = str(data['temp_feels_like'])
+        response_dict['humidity'] = str(data['humidity'])
+        response_dict['rain_1h'] = str(data['rain_1h'])
+        response_dict['snow_3h'] = str(data['snow_3h'])
+        response_dict['weather_description'] = data['weather_description']
+        response_dict['total_ticket_number'] = str(data['total_ticket_number'])
+        response_dict['fine'] = str(data['fine'])
+        
+        response_list.append(response_dict) 
 
-    return jsonify(data_per_hour_transformed)
+    return jsonify(response_list)
 
 @app.route('/api/violation_bar')
 def violation_bar_data():
