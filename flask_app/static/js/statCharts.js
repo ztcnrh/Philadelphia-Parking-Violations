@@ -54,9 +54,10 @@ d3.json("/api/state_pie").then((stateData) => {
     // Create a Plotly pie chart for violation count by the top 10 states in Philly
     var traceStateCount = {
             labels: stateData.state.slice(0, 10),
-            values: stateData.count.slice(0, 10),
+            values: stateData.count.map(data => +data).slice(0, 10),
             type: 'pie'
         };
+    // console.log(traceStateCount['values']);
         
     var dataStateCount = [traceStateCount];
     
@@ -69,10 +70,11 @@ d3.json("/api/state_pie").then((stateData) => {
     // Create another pie chart for average fine
     var traceStateFine = {
         labels: stateData.state.slice(0, 10),
-        values: stateData.avg_fine.slice(0, 10),
+        values: stateData.avg_fine.map(data => +data).slice(0, 10),
         type: 'pie',
         textinfo: "value"
     };
+    // console.log(traceStateFine['values']);
     
     var dataStateFine = [traceStateFine];
 

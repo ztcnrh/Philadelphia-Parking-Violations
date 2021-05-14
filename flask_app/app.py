@@ -207,8 +207,8 @@ def state_pie_data():
 
     for state in tickets_per_state:
         tickets_per_state_dict['state'].append(state[0])
-        tickets_per_state_dict['count'].append(state[1])
-        tickets_per_state_dict['avg_fine'].append(round(state[2],1))
+        tickets_per_state_dict['count'].append(str(state[1]))
+        tickets_per_state_dict['avg_fine'].append(str(round((state[2]), 1)))
 
     # ------------------------
     # Session ends, all queries completed
