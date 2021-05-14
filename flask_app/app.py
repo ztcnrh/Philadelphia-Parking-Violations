@@ -153,7 +153,7 @@ def scatterplot_data():
         response_dict['weather_description'] = data['weather_description']
         response_dict['total_ticket_number'] = str(data['total_ticket_number'])
         response_dict['fine'] = str(data['fine'])
-        
+
         response_list.append(response_dict) 
 
     return jsonify(response_list)
@@ -171,15 +171,15 @@ def violation_bar_data():
 
     # Query
     # ----- Ticket count per violation type -----
-    tickets_per_violation = db.session.query(Parking.violation_desc,db.func.count(Parking.anon_ticket_number), db.func.avg(Parking.fine)).\
+    tickets_per_violation = db.session.query(Parking.violation_desc, db.func.count(Parking.anon_ticket_number), db.func.avg(Parking.fine)).\
                                     group_by(Parking.violation_desc).\
                                     order_by(db.func.count(Parking.anon_ticket_number).desc()).\
                                     order_by(db.func.avg(Parking.fine).desc()).all()
 
     for violation in tickets_per_violation:
         response['description'].append(violation[0])
-        response['count'].append(violation[1])
-        response['avg_fine'].append(violation[2])
+        response['count'].append(str(violation[1]))
+        response['avg_fine'].append(str(violation[2]))
 
     # ------------------------
     # Session ends, all queries completed
@@ -273,14 +273,14 @@ def avg_tickets_per_weather():
                              Weather.weather_description,
                        db.func.count(Parking.anon_ticket_number)).\
                        filter(Parking.ymdh == Weather.ymdh).\
-                       group_by(Weather.weather_id).\
+                       group_by(Weather.weather_id, Weather.weather_main, Weather.weather_description).\
                        order_by(Weather.weather_id.asc()).all()
 
     hour_count = db.session.query(Weather.weather_id,
                                Weather.weather_main,
                                Weather.weather_description,
                      db.func.count(Weather.weather_description)).\
-                     group_by(Weather.weather_id).\
+                     group_by(Weather.weather_id, Weather.weather_main, Weather.weather_description).\
                      order_by(Weather.weather_id.asc()).all()
 
     # Calculate the average tickets per hour based on each weather type

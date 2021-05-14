@@ -3,10 +3,10 @@ d3.json("/api/violation_bar").then((violationData) => {
 
     // console.log(violationData);
 
-    // Only plotting the top 10 violation types
-    violationDescription = violationData.description.slice(0,10);
-    violationCount = violationData.count.slice(0,10);
-    violationFine = violationData.avg_fine.slice(0,10);
+    // Only plotting the top 10 violation types. Also turn the string values into numbers.
+    var violationDescription = violationData.description.slice(0,10);
+    var violationCount = violationData.count.map(data => +data).slice(0,10);
+    var violationFine = violationData.avg_fine.map(data => +data).slice(0,10);
 
     // Build our Plotly bar chart
     var traceViolationCount = {
@@ -88,10 +88,6 @@ d3.json("/api/weather_bubble").then((weatherData) => {
 
     // console.log(weatherData);
 
-    weatherData.weather_id.forEach((data) => {
-        data.weather_id = +data.weather_id;
-    })
-
     // Scale down the market size so the plot is more readable
     var markerSize = weatherData.anon_ticket_number.map(value => value/10);
 
@@ -122,10 +118,6 @@ d3.json("/api/weather_bubble").then((weatherData) => {
 d3.json("/api/weather_bubble_avg").then((weatherDataAvg) => {
 
     // console.log(weatherDataAvg);
-
-    weatherDataAvg.weather_id.forEach((data) => {
-        data.weather_id = +data.weather_id;
-    });
 
     // Scale down the market size so the plot is more readable
     var markerSizeAvg = weatherDataAvg.ticket_count.map(value => value/2);
