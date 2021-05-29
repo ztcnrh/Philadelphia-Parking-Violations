@@ -37,5 +37,8 @@ Below are some highlights of our application. You can also view our presentation
 
 ![Top 10 Violation Types](images_highlights/top_10_violations.png)
 
-"Meter Expired CC" (CC means Center City) was not the most expensive offense but was the most commonly issued ticket.
+* "Meter Expired CC" (CC means Center City) was not the most expensive offense but was the most commonly issued ticket.
+
+![Top 10 States by Count of Tickets Received](images_highlights/top_10_states_count.png)
+
 
