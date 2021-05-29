@@ -1,5 +1,7 @@
 # Philly Parking Violations Analysis :parking: & Indications from Weather :cloud_with_rain: (UPenn Data Boot Camp)
 
+*Last Updated: May 29, 2021*
+
 **Highlevel**: This is an interactive web application that offers analytical insights/patterns into historic parking violations and the potential effects of various weather conditions in Philadelphia.<br>
 **View the deployed app (Heroku) here**: https://philly-parking-violations.herokuapp.com/
 
@@ -19,5 +21,21 @@ To answer the above questions, we:
 
 ## Methods & Approach
 
-**Technical Diagram**
+**Technical Diagram & Workflow**
 ![Workflow Technical Diagram](images_highlights/technical_diagram.png)
+
+* Our application is a flask app.
+* ETL (Extract, Transform, Load) processes were performed on the datasets we collected from the various sources listed above.
+* Data was loaded into a SQLite database for local testing purposes but later migrated to Heroku Postgres upon deployment.
+* To perform various weather related analyses, tables were joined based on a speacial "datetime" column (in string format) which detailed aggregations down to every hour in the days throughout 2017.
+* The visualizations were built using libraries including Plotly.js, Leaflet.js, and D3.js, etc.
+* The application was deployed on Heroku.
+
+## Highlights & Analyses
+
+Below are some highlights of our application. You can also view our presentation deck [here](https://docs.google.com/presentation/d/12zvvblExMmNb_WNNd9zoDT4At5H9TNzZK52N2xGuJ9o/edit?usp=sharing).
+
+![Top 10 Violation Types](images_highlights/top_10_violations.png)
+
+"Meter Expired CC" (CC means Center City) was not the most expensive offense but was the most commonly issued ticket.
+
