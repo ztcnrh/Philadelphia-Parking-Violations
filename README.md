@@ -5,7 +5,7 @@
 **Highlevel**: This is an interactive web application that offers analytical insights/patterns into historic parking violations and the potential effects of various weather conditions in Philadelphia.<br>
 **View the deployed app (Heroku) here**: https://philly-parking-violations.herokuapp.com/
 
-<img src=images_highlights/parking_ticket_image.jpeg width="60%">
+<img src=images_highlights/parking_ticket_image.jpeg width="70%">
 
 ## Background
 
