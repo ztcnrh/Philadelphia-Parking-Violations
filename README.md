@@ -2,7 +2,7 @@
 
 *Last Updated: May 30, 2021*
 
-**Highlevel**: This is an interactive web application that offers analytical insights/patterns into historic parking violations and the potential effects of various weather conditions in Philadelphia.<br>
+**Highlevel**: This is an interactive web application that offers analytical insights into historical parking violations and the potential effects of various weather conditions in Philadelphia.<br>
 **View the deployed app (Heroku) here**: https://philly-parking-violations.herokuapp.com/
 
 <img src=images_highlights/parking_ticket_image.jpeg width="70%" alt="Header Image - A Parking Violation Ticket">
@@ -15,7 +15,7 @@ However, instead of being torn by the fact that we received a ticket, what we ca
 
 ### Data Source:
 To answer the above questions, we:
-* Retrieved the historic Philadelphia parking violations data from 2017 ([OpenDataPhilly](https://www.opendataphilly.org/dataset/parking-violations));
+* Retrieved the historical Philadelphia parking violations data from 2017 ([OpenDataPhilly](https://www.opendataphilly.org/dataset/parking-violations));
 * Purchased the historical weather data in bulk from that same year ([OpenWeather API](https://openweathermap.org/history-bulk));
 * Performed an API call to retrieve the GeoJSON (Polygon) that provides Philadelphia zip codes information ([OpenDataPhilly](https://www.opendataphilly.org/dataset/zip-codes))
 
@@ -82,5 +82,6 @@ Below are some highlights of our application. You can also view our presentation
 
 * Plot a time series to explore how violation count changes throughout the day, week, or month.
 * Explore other weather data points (e.g. wind speed) to see if there's any correlation 
-* Research historic events as there could be external factors that might influence citation issuance (e.g. events, street closures)
+* Research historical events as there could be external factors that might influence citation issuance (e.g. events, street closures)
 * Since there are not as many rainy or snowy days in a typical year, for example, we could also make a focused scatterplot with data from multiple years only when there's rain.
+* Since 2020 is a "different" year with COVID-19, more interesting sights can potentially be found if we collect data from that time period.
