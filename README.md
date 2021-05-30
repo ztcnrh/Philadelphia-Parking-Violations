@@ -37,7 +37,7 @@ To answer the above questions, we:
 Below are some highlights of our application. You can also view our presentation deck [here](https://docs.google.com/presentation/d/12zvvblExMmNb_WNNd9zoDT4At5H9TNzZK52N2xGuJ9o/edit?usp=sharing).
 
 #### Top 10 Violation Types (Plotly.js)
-<img src=images_highlights/top_10_violations.png width="70%" alt="Bar Chart - Top 10 Violation Types">
+<img src=images_highlights/top_10_violations.png width="80%" alt="Bar Chart - Top 10 Violation Types">
 
 * "Meter Expired CC" (CC means Center City) was not the most expensive offense but was the most commonly issued ticket.
 
@@ -66,7 +66,7 @@ Below are some highlights of our application. You can also view our presentation
 * As mentioned before, the high ticket count shown for the "very heavy rain" weather type is also plotted on the chart (far right). The average count remains high for that weather condition because that is the only date point.
 
 #### Multi-Layered Parking Violation Map (Leaflet.js)
-<img src=images_highlights/map_streets.png width="95%" alt="An interactive map with layers of heatmap, Philly zip codes, and selected violation as pins">
+<img src=images_highlights/map_streets.png width="90%" alt="An interactive map with layers of heatmap, Philly zip codes, and selected violation as pins">
 
 * To provide our users more ways to explore the data, we also built an interactive map using Leaflet.
 * Components/Layeres:
@@ -74,10 +74,13 @@ Below are some highlights of our application. You can also view our presentation
   * Heatmap of all violations based on recorded coordinates
   * Customized pins (with clickable pop-ups) of selected violations such as "Excessive Noise"
   * Selectable map styles from Mapbox API
+* Our consideration for performance was mostly centered on this map functionality. Again, note the heatmap is fairly clustered already even with only 30% of randomly selected data.
 
 <hr>
-## Conclusion
 
-* There was no strong evidence of correlations between various weather metrics (temp, precipitation, humidity) and number of tickets issued, as demonstrated by the scatter.
-* The average hourly violations are consistent throughout weather conditions, with the exception to inclement conditions, as shown by the bubble chart.
+## Opportunities for Next Steps
 
+* Plot a time series to explore how violation count changes throughout the day, week, or month.
+* Explore other weather data points (e.g. wind speed) to see if there's any correlation 
+* Research historic events as there could be external factors that influence citation issuance (e.g. events, street closures)
+* Since there are not as many rainy or snowy days in a typical year, for example, we could also make a focused scatterplot with data only when there's rain from multiple years.
