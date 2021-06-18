@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>About</title>
+    <!--Bootswatch CSS Theme-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/bootstrap.min.css"> -->
+    <!-- Our CSS  -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepageStyle.css') }}">
+    <!-- <link rel="stylesheet" href="../static/css/aboutStyle.css"> -->
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='img/philly_parking_2017.ico') }}">
+  </head>
+
+  <body>
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand">Philadelphia Parking Violations 2017</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="/charts">Statistics</a>
+            <a class="nav-link" href="/scatterplot">Scatterplot</a>
+            <a class="nav-link" href="/map">Parking Citation Map</a>
+            <a class="nav-link" href="/about">About</a>
+            <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a> -->
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <br>
+                <br>
+                <h4>About the Team</h4>
+                <p>Click <a href="https://github.com/ztcnrh/Philadelphia-Parking-Violations" class="repo-link" target="_blank">here</a> to visit our Github repo.</p>
+                <br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-md-5 col-lg-4">
+                <div class="card mb-3">
+                    <h3 class="card-header header-small">Tianchi<br>Zhang</h3>
+                    <div>
+                        <img src="{{ url_for('static', filename='img/tianchi_zhang.png') }}" alt="Tianchi Zhang" width="100%">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Tianchi is a multidisciplinary analyst who's passionate about empowering decision 
+                            makings with actionable data and creating exceptional products. He currently works in 
+                            the generic pharma industry as a product analyst.
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Favorite movie: <br><em>2001: A Space Odyssey</em></li>
+                        <li class="list-group-item">Hobbies: <br>Basketball, film, space</li>
+                    </ul>
+                    <div class="card-body">
+                        <span class="badge bg-light">
+                            <a href="https://github.com/ztcnrh" class="card-link link-underline" target="_blank">Github</a>
+                        </span>
+                        <span class="badge bg-light">
+                            <a href="https://www.linkedin.com/in/tianchi-zhang-tc/" class="card-link link-underline" target="_blank">LinkedIn</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-4">
+                <div class="card mb-3">
+                    <h3 class="card-header header-small">Rob<br>Matelyan</h3>
+                    <div>
+                        <img src="{{ url_for('static', filename='img/rob_matelyan.png') }}" alt="Rob Matelyan" width="100%">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Rob worked for 3 years as a fraud prevention analyst within the payments space. 
+                            He is skilled at analyzing large datasets to identify patterns of fraudulent activity and mitigating fraud risk.
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Favorite movie: <br><em>The Departed</em></li>
+                        <li class="list-group-item">Hobbies: <br>Cooking, reading, snowboarding</li>
+                    </ul>
+                    <div class="card-body">
+                        <span class="badge bg-light">
+                            <a href="https://github.com/robmatelyan" class="card-link link-underline" target="_blank">Github</a>
+                        </span>
+                        <span class="badge bg-light">
+                            <a href="https://www.linkedin.com/in/rob-matelyan/" class="card-link link-underline" target="_blank">LinkedIn</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-md-5 col-lg-4">
+                <div class="card mb-3">
+                    <h3 class="card-header header-small">Francisco<br>Zuluaga</h3>
+                    <div>
+                        <img src="{{ url_for('static', filename='img/francisco_zuluaga.png') }}" alt="Francisco Zuluaga" width="100%">
+                    </div>
+                    </svg>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Francisco worked in online advertising for 5 years, managing millions 
+                            of dollars in Google Ads spend for Fortune 500 companies with a focus on data driven results.
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Favorite movie: <br><em>Inception</em></li>
+                        <li class="list-group-item">Hobbies: <br>Mexican food, concerts</li>
+                    </ul>
+                    <div class="card-body">
+                        <span class="badge bg-light">
+                            <a href="https://github.com/zulumanf" class="card-link link-underline" target="_blank">Github</a>
+                        </span>
+                        <span class="badge bg-light">
+                            <a href="https://www.linkedin.com/in/francisco-zuluaga-a82b88a2/" class="card-link link-underline" target="_blank">LinkedIn</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-4">
+                <div class="card mb-3">
+                    <h3 class="card-header header-small">Aaron<br>Lee</h3>
+                    <div>
+                        <img src="{{ url_for('static', filename='img/aaron_lee.png') }}" alt="Aaron Lee" width="100%">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Aaron is a data analyst with robust problem-solving skills and proven experience in business 
+                            operations and analytics tools. He currently works as a cybersecurity consultant at one of the big four accounting firms.
+                        </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Favorite movie: <br><em>Interstellar</em></li>
+                        <li class="list-group-item">Hobbies: <br>Soccer, reading</li>
+                    </ul>
+                    <div class="card-body">
+                        <span class="badge bg-light">
+                            <a href="https://github.com/aaronlee28" class="card-link link-underline" target="_blank">Github</a>
+                        </span>
+                        <span class="badge bg-light">
+                            <a href="https://www.linkedin.com/in/aaron-lee-880b46123/" class="card-link link-underline" target="_blank">LinkedIn</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+
+    <!-- D3 CDN -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- JS -->
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/home.js') }}"></script> -->
+    <script type="text/javascript" src="../static/js/about.js"></script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+  
+  
+  </body>
+
+</html>

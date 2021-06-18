@@ -1,0 +1,16 @@
+.navbar {
+    padding: 0.8rem 1rem;
+}
+
+.make-bold{
+    font-style: bold;
+}
+
+.link-underline:hover {
+    text-decoration: underline;
+    color: slategray;
+}
+
+.repo-link {
+    color: steelBlue;
+}
