@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <!-- Our CSS  -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/homepageStyle.css') }}">
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='img/philly_parking_2017.ico') }}">
   </head>
 
   <body>
@@ -22,10 +24,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link nav-options" aria-current="page" href="/">Home</a>
-            <a class="nav-link nav-options" href="/charts">Statistics</a>
-            <a class="nav-link nav-options" href="/scatterplot">Scatterplot</a>
-            <a class="nav-link nav-options" href="/map">Parking Citation Map</a>
+            <a class="nav-link" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="/charts">Statistics</a>
+            <a class="nav-link" href="/scatterplot">Scatterplot</a>
+            <a class="nav-link" href="/map">Parking Citation Map</a>
+            <a class="nav-link" href="/about">About</a>
             <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true"></a> -->
           </div>
         </div>

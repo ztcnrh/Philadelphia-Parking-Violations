@@ -326,18 +326,24 @@ def avg_tickets_per_weather():
 def index():
     return render_template('index.html')
 
-@app.route('/map')
-def heatmap():
-    # Return map.html and also pass over api key
-    return render_template("map.html", api_key=app.config['MAP_API_KEY'])
+@app.route('/charts')
+def bargraph():
+    return render_template("statCharts.html")
 
 @app.route('/scatterplot')
 def scatterplot():
     return render_template("scatterplot.html")
 
-@app.route('/charts')
-def bargraph():
-    return render_template("statCharts.html")
+@app.route('/map')
+def heatmap():
+    # Return map.html and also pass over api key
+    return render_template("map.html", api_key=app.config['MAP_API_KEY'])
+
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
+
 
 
 
