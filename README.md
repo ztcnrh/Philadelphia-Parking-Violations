@@ -65,7 +65,7 @@ Below are some highlights of our application. You can also view our presentation
 
 * Having looked at the average tickets issued per weather types, we decided to dive deeper into other weather metrics (such as temperatures and precipitation volumes) in the weather dataset to see if we can find any correlations.
 * To do that, we built a scatter plot that shows various weather metrics on the x-axis and parking metrics on the y-axis. Each dot represents a complete hour with a specific weather type recorded for that time period. Interactivity such as CSS transitions and tooltips are built to explore different combinations of metrics interactively. Despite some patterns shown on the above bubble chart, we did not find any noticeable correlations between the variables in the scatterplot.
-* As mentioned before, the high ticket count shown for the "very heavy rain" weather type is also plotted on the chart (far right). The average count remains high for that weather condition because that is the only date point.
+* As mentioned before, the high ticket count shown for the "very heavy rain" weather type is also plotted on the chart (far right). The average count remains high for that weather condition because that is the only data point.
 
 #### Multi-Layered Parking Violation Map (Leaflet.js)
 <img src=images_highlights/map_streets.png width="90%" alt="An interactive map with layers of heatmap, Philly zip codes, and selected violation as pins">
