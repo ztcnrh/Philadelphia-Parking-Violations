@@ -4,6 +4,12 @@ config.js
 api_keys.py
 postgresql_password.py
 
+# Large data files
+resources/cleaned_data/*.csv
+resources/raw_data/*.csv
+flask_app/static/data/*.sqlite
+flask_app/static/data/*.json
+
 # Mac & VSC specific
 *.DS_Store
 *.vscode
