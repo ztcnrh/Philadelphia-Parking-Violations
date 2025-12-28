@@ -3,7 +3,8 @@
 *Last Updated: May 30, 2021*
 
 **Highlevel**: This is an interactive web application that offers analytical insights into historical parking violations and the potential effects of various weather conditions in Philadelphia.<br>
-**View the deployed app (Heroku) here**: https://philly-parking-violations.herokuapp.com/<br>
+**View the deployed app (Heroku) here (DEPRECATED)**: https://philly-parking-violations.herokuapp.com/<br>
+- _NOTE: I had torn down the deployed resources to save cost._
 
 *View our presentation deck [here](https://docs.google.com/presentation/d/12zvvblExMmNb_WNNd9zoDT4At5H9TNzZK52N2xGuJ9o/edit?usp=sharing)*
 
@@ -20,6 +21,23 @@ To answer the above questions, we:
 * Retrieved the historical Philadelphia parking violations data from 2017 ([OpenDataPhilly](https://www.opendataphilly.org/dataset/parking-violations));
 * Purchased the historical weather data in bulk from that same year ([OpenWeather API](https://openweathermap.org/history-bulk));
 * Performed an API call to retrieve the GeoJSON (Polygon) that provides Philadelphia zip codes information ([OpenDataPhilly](https://www.opendataphilly.org/dataset/zip-codes))
+
+Data at the time of authoring this project lived under:
+```
+project-root/
+├── resources/
+│   ├── raw_data/
+│   │   └── raw_historical_bulk_weather_philly.csv
+│   └── cleaned_data/
+│       ├── cleaned_parking_violations_2017.csv
+│       ├── cleaned_philly_weather_2017.csv
+│       └── cleaned_reduced_parking_violations_2017.csv
+└── flask_app/
+    └── static/
+        └── data/
+            └── data_all.sqlite
+```
+which were commited via Git LFS but had been deprecated as well.
 
 ## Methods & Approach
 

@@ -8,7 +8,6 @@ postgresql_password.py
 resources/cleaned_data/*.csv
 resources/raw_data/*.csv
 flask_app/static/data/*.sqlite
-flask_app/static/data/*.json
 
 # Mac & VSC specific
 *.DS_Store
